@@ -2,13 +2,16 @@ import {generateUuid} from "./helper";
 
 interface ShortenerInit {
     insert: (url: { key: string; value: string}) => void;
-    findAll: () => {key: string; value: string}[]
+    findAll: () => Promise<{key: string; value: string}[]>;
+    findByKey: (key: string) => Promise<string>;
+    pruneTargets: string[];
 }
 
 interface ShortenerCore {
   register: (shortenUrl: string, url: string) => void;
-  getShortenUrls: () => {key: string; value: string}[];
-  generateUuid: (url: string) => string;
+  getShortenUrls: () => Promise<{key: string; value: string}[]>;
+  getRealUrl: (key: string) => Promise<string>;
+  filterQueryString: (url: string) => {url: string; filtered: Record<string, string>};
 }
 
 let coreOptions: null | ShortenerCore  = null;
@@ -22,35 +25,72 @@ export function init(options: ShortenerInit) {
         value: url
       })
     },
-    getShortenUrls(): {key: string; value: string}[] {
+    async getShortenUrls(): Promise<{key: string; value: string}[]> {
       if(!options) throw new Error("You should init first");
 
-      const urls = options.findAll();
-      return urls;
+      return options.findAll();
+    },
+    async getRealUrl(key: string): Promise<string> {
+      if(!options) throw new Error("You should init first");
+
+      return options.findByKey(key);
+    },
+    filterQueryString(url: string): {url: string, filtered: Record<string, string>} {
+      if(!options) throw new Error("You should init first");
+
+      const QUESTION_MARK = '?';
+
+      const filterTargets = options.pruneTargets;
+
+      const queries = {};
+      const result = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, (match,key,value) => {
+        const shouldAddQuestionMark = match.includes(QUESTION_MARK);
+
+        if(filterTargets.includes(key)) {
+          queries[key] = value;
+          return shouldAddQuestionMark ? '?' : '';
+        }
+        return shouldAddQuestionMark ?  `?${key}=${value}`: `${key}=${value}`;
+      });
+
+      return {
+        url: result.slice(-1) === '?' ? result.substring(0, result.length - 1) : result,
+        filtered: queries
+      }
     }
   }
 }
 
 interface ShortenOptions {
-    shortOrigin: string;
+    shortOrigin?: string;
+    protocol?: string;
 }
 
-export function shorten(url: string, options: ShortenOptions) {
-    const {url: shortenUrl, shouldRegister} = convertUrl(url, options.shortOrigin);
+export async function shorten(url: string, options: ShortenOptions) {
+    const {url: shortenUrl, shouldRegister} = await convertUrl(url, options);
     if(shouldRegister) {
       coreOptions.register(shortenUrl, url);
     }
     return shortenUrl;
 }
 
-function convertUrl(url: string, shortOrigin: string) {
-    const registeredUrl = coreOptions.getShortenUrls().find(obj => obj.value === url);
+async function convertUrl(url: string, options: ShortenOptions) {
+    const registeredUrls = await coreOptions.getShortenUrls();
+    const registeredUrl = registeredUrls.find(obj => obj.value === url);
     return registeredUrl ?
         { url: registeredUrl.key, shouldRegister: !registeredUrl } :
-        { url: createShortenUrl(url, shortOrigin), shouldRegister: !registeredUrl }
+        { url: createShortenUrl(url, options), shouldRegister: !registeredUrl }
 }
 
-function createShortenUrl(url: string, shortOrigin: string) {
+function createShortenUrl(url: string, options: ShortenOptions) {
     const currentUrl = new URL(url);
-    return `${currentUrl.protocol}//${shortOrigin}/${generateUuid(url)}`;
+    return `${options.protocol ?? currentUrl.protocol}//${options.shortOrigin}/${generateUuid(url)}`;
+}
+
+export async function invokeUrl(key: string) {
+  return coreOptions.getRealUrl(key);
+}
+
+export function pruneUrl(url: string) {
+  return coreOptions.filterQueryString(url)
 }
