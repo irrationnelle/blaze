@@ -1,13 +1,23 @@
-import {getTimestamp} from "./helper";
+import { parseTemplate } from 'url-template';
 
-export function interpolator(url: string) {
-  return parser(url);
+interface InterpolatorCore {
+  targets: Record<string, string>
 }
 
-function parser(url: string) {
-  return replaceLiteral(url, 'ts', getTimestamp())
+let coreOptions : null | InterpolatorCore = null;
+export function init(targets: Record<string, string>) {
+  coreOptions = {
+    targets
+  }
 }
 
-function replaceLiteral(body: string, literal: string, value: string) {
-  return body.replace(/\{ts\}/gi, value)
+export function interpolate(url: string) {
+  if(!coreOptions) {
+    throw new Error("You should init first");
+  }
+  return parseTemplate(url).expand(coreOptions.targets);
+}
+
+export function destroy() {
+  coreOptions = null;
 }

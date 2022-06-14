@@ -42,7 +42,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nanobundle", "virtual:849a726ebb1d9b33862abbf34bf5e1e3bfe4162188cdc6560cdc923d85f94dae8b0e48f099a7eb33141985cb4f821a026d31bfd960b976025c9aa3a3db2caa2e#npm:0.0.28"],\
             ["nanoid", "npm:3.3.4"],\
             ["rimraf", "npm:3.0.2"],\
-            ["typescript", "patch:typescript@npm%3A4.7.2#~builtin<compat/typescript>::version=4.7.2&hash=7ad353"]\
+            ["typescript", "patch:typescript@npm%3A4.7.2#~builtin<compat/typescript>::version=4.7.2&hash=7ad353"],\
+            ["url-template", "npm:3.0.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -1851,7 +1852,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nanobundle", "virtual:849a726ebb1d9b33862abbf34bf5e1e3bfe4162188cdc6560cdc923d85f94dae8b0e48f099a7eb33141985cb4f821a026d31bfd960b976025c9aa3a3db2caa2e#npm:0.0.28"],\
             ["nanoid", "npm:3.3.4"],\
             ["rimraf", "npm:3.0.2"],\
-            ["typescript", "patch:typescript@npm%3A4.7.2#~builtin<compat/typescript>::version=4.7.2&hash=7ad353"]\
+            ["typescript", "patch:typescript@npm%3A4.7.2#~builtin<compat/typescript>::version=4.7.2&hash=7ad353"],\
+            ["url-template", "npm:3.0.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -5058,6 +5060,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["unique-slug", "npm:2.0.2"],\
             ["imurmurhash", "npm:0.1.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["url-template", [\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/url-template-npm-3.0.0-c17ff9b8d0-510228d8ec.zip/node_modules/url-template/",\
+          "packageDependencies": [\
+            ["url-template", "npm:3.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\

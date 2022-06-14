@@ -1284,6 +1284,7 @@ __metadata:
     nanoid: ^3.3.4
     rimraf: ^3.0.2
     typescript: ^4.7.2
+    url-template: ^3.0.0
   languageName: unknown
   linkType: soft
 
@@ -4107,6 +4108,13 @@ __metadata:
   dependencies:
     imurmurhash: ^0.1.4
   checksum: 5b6876a645da08d505dedb970d1571f6cebdf87044cb6b740c8dbb24f0d6e1dc8bdbf46825fd09f994d7cf50760e6f6e063cfa197d51c5902c00a861702eb75a
+  languageName: node
+  linkType: hard
+
+"url-template@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "url-template@npm:3.0.0"
+  checksum: 510228d8ec642688d05ca533964d8858166936fe662eb6738b6214c60fbbabf8f0fdc63b340b30b1ee5261ee817793d34244632962bc7440c998e5dcf40bf40a
   languageName: node
   linkType: hard
 
