@@ -15,7 +15,7 @@ interface ShortenerCore {
 }
 
 let coreOptions: null | ShortenerCore  = null;
-export function init(options: ShortenerInit) {
+export function initShortener(options: ShortenerInit) {
   coreOptions = {
     register (shortenUrl: string, url: string) {
       if(!options) throw new Error("You should init first");

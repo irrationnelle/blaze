@@ -5,7 +5,7 @@ interface InterpolatorCore {
 }
 
 let coreOptions : null | InterpolatorCore = null;
-export function init(targets: () => Promise<Record<string, string>>) {
+export function initInterpolator(targets: () => Promise<Record<string, string>>) {
   coreOptions = {
      targets
   }

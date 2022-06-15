@@ -8,7 +8,7 @@ describe("interpolator: ", () => {
     // given
     mock = jest.spyOn(Date, "now").mockReturnValue('1234567890123');
 
-    interpolator.init(() => Promise.resolve({
+    interpolator.initInterpolator(() => Promise.resolve({
       ts: getTimestamp()
     }))
   })
@@ -34,7 +34,7 @@ describe("interpolator: ", () => {
   test("URL에 {domain} 과 {page} 가 들어가면 jobs 와 main 을 interpolation 한다.", async () => {
     // given
     interpolator.destroy();
-    interpolator.init(() => Promise.resolve({
+    interpolator.initInterpolator(() => Promise.resolve({
       domain: "jobs",
       page: "main"
     }))
@@ -59,7 +59,7 @@ describe("interpolator: ", () => {
   test("URL에 origin 과 query string 을 조합해서 interpolation 한다.", async () => {
     // given
     interpolator.destroy();
-    interpolator.init(() => Promise.resolve({
+    interpolator.initInterpolator(() => Promise.resolve({
       domain: "jobs",
       page: "main",
       ts: getTimestamp()
@@ -76,7 +76,7 @@ describe("interpolator: ", () => {
   test("URL에 plugin 을 사용해서 interpolation 한다.", async () => {
     // given
     interpolator.destroy();
-    interpolator.init(targetMap)
+    interpolator.initInterpolator(targetMap)
 
     // when
     const url = "https://sample.com/{asyncValue}{?ts}";

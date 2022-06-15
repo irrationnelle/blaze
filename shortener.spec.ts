@@ -5,7 +5,7 @@ import {findAll, findByKey, insert, removeAll} from "./__test__/db/in-memory-db"
 
 describe('shortener: ',() => {
   beforeEach(() => {
-    shortener.init({
+    shortener.initShortener({
       insert,
       findAll
     })
@@ -77,7 +77,7 @@ describe("invokeUrl", () => {
   beforeEach(async () => {
     mock = jest.spyOn(helper, "generateUuid").mockReturnValue('1q2w3e');
 
-    shortener.init({
+    shortener.initShortener({
       insert,
       findAll,
       findByKey
@@ -109,7 +109,7 @@ describe("invokeUrl", () => {
 
 describe('prune', () => {
   beforeEach(() => {
-    shortener.init({
+    shortener.initShortener({
       insert,
       findAll,
       findByKey,
