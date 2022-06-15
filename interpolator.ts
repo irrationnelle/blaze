@@ -1,21 +1,22 @@
 import { parseTemplate } from 'url-template';
 
 interface InterpolatorCore {
-  targets: Record<string, string>
+  targets: () => Promise<Record<string, string>>
 }
 
 let coreOptions : null | InterpolatorCore = null;
-export function init(targets: Record<string, string>) {
+export function init(targets: () => Promise<Record<string, string>>) {
   coreOptions = {
-    targets
+     targets
   }
 }
 
-export function interpolate(url: string) {
+export async function interpolate(url: string) {
   if(!coreOptions) {
     throw new Error("You should init first");
   }
-  return parseTemplate(url).expand(coreOptions.targets);
+  const targets = await coreOptions.targets();
+  return parseTemplate(url).expand(targets);
 }
 
 export function destroy() {
