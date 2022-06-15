@@ -1278,6 +1278,7 @@ __metadata:
     "@swc/jest": ^0.2.21
     "@types/lokijs": ^1.5.7
     "@types/node": ^17.0.35
+    blaze-test-plugin: ^0.0.2
     jest: ^28.1.0
     lokijs: ^1.5.12
     nanobundle: ^0.0.28
@@ -1287,6 +1288,13 @@ __metadata:
     url-template: ^3.0.0
   languageName: unknown
   linkType: soft
+
+"blaze-test-plugin@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "blaze-test-plugin@npm:0.0.2"
+  checksum: 7f418592034c2f6f1cbe533301ef1f4de72158b7fce4901b9bbc0a98426cfff2d53d3e1abd57764658a89755cc13ce7572769dd7a11716f5291c4be2fa56b36e
+  languageName: node
+  linkType: hard
 
 "brace-expansion@npm:^1.1.7":
   version: 1.1.11

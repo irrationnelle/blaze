@@ -1,12 +1,12 @@
-import * as helper from "./helper";
 import * as interpolator from "./interpolator";
 import {getTimestamp} from "./helper";
+import targetMap from 'blaze-test-plugin'
 
 describe("interpolator: ", () => {
   let mock: any = null;
   beforeEach(async () => {
     // given
-    mock = jest.spyOn(helper, "getTimestamp").mockReturnValue('1234567890123');
+    mock = jest.spyOn(Date, "now").mockReturnValue('1234567890123');
 
     interpolator.init(() => Promise.resolve({
       ts: getTimestamp()
@@ -71,5 +71,18 @@ describe("interpolator: ", () => {
 
     // given
     expect(interpolatedUrl).toBe('https://sample.jobs.com/main?ts=1234567890123')
+  })
+
+  test("URL에 plugin 을 사용해서 interpolation 한다.", async () => {
+    // given
+    interpolator.destroy();
+    interpolator.init(targetMap)
+
+    // when
+    const url = "https://sample.com/{asyncValue}{?ts}";
+    const interpolatedUrl = await interpolator.interpolate(url);
+
+    // given
+    expect(interpolatedUrl).toBe('https://sample.com/trail-a-blaze?ts=1234567890123')
   })
 })

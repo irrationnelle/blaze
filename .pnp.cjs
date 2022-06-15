@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@swc/jest", "virtual:849a726ebb1d9b33862abbf34bf5e1e3bfe4162188cdc6560cdc923d85f94dae8b0e48f099a7eb33141985cb4f821a026d31bfd960b976025c9aa3a3db2caa2e#npm:0.2.21"],\
             ["@types/lokijs", "npm:1.5.7"],\
             ["@types/node", "npm:17.0.35"],\
+            ["blaze-test-plugin", "npm:0.0.2"],\
             ["jest", "virtual:849a726ebb1d9b33862abbf34bf5e1e3bfe4162188cdc6560cdc923d85f94dae8b0e48f099a7eb33141985cb4f821a026d31bfd960b976025c9aa3a3db2caa2e#npm:28.1.0"],\
             ["lokijs", "npm:1.5.12"],\
             ["nanobundle", "virtual:849a726ebb1d9b33862abbf34bf5e1e3bfe4162188cdc6560cdc923d85f94dae8b0e48f099a7eb33141985cb4f821a026d31bfd960b976025c9aa3a3db2caa2e#npm:0.0.28"],\
@@ -1847,6 +1848,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@swc/jest", "virtual:849a726ebb1d9b33862abbf34bf5e1e3bfe4162188cdc6560cdc923d85f94dae8b0e48f099a7eb33141985cb4f821a026d31bfd960b976025c9aa3a3db2caa2e#npm:0.2.21"],\
             ["@types/lokijs", "npm:1.5.7"],\
             ["@types/node", "npm:17.0.35"],\
+            ["blaze-test-plugin", "npm:0.0.2"],\
             ["jest", "virtual:849a726ebb1d9b33862abbf34bf5e1e3bfe4162188cdc6560cdc923d85f94dae8b0e48f099a7eb33141985cb4f821a026d31bfd960b976025c9aa3a3db2caa2e#npm:28.1.0"],\
             ["lokijs", "npm:1.5.12"],\
             ["nanobundle", "virtual:849a726ebb1d9b33862abbf34bf5e1e3bfe4162188cdc6560cdc923d85f94dae8b0e48f099a7eb33141985cb4f821a026d31bfd960b976025c9aa3a3db2caa2e#npm:0.0.28"],\
@@ -1856,6 +1858,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["url-template", "npm:3.0.0"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["blaze-test-plugin", [\
+        ["npm:0.0.2", {\
+          "packageLocation": "./.yarn/cache/blaze-test-plugin-npm-0.0.2-e894cee0ee-7f41859203.zip/node_modules/blaze-test-plugin/",\
+          "packageDependencies": [\
+            ["blaze-test-plugin", "npm:0.0.2"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["brace-expansion", [\
